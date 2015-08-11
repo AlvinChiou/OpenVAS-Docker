@@ -3,7 +3,7 @@
 # VERSION       1.0.0
 
 FROM debian:7.8
-MAINTAINER Alvin Chiu thealvinchiu@gmail.com
+MAINTAINER Serge Katzmann serge.katzmann@gmail.com
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
@@ -69,17 +69,17 @@ apt-get install build-essential \
 					-y --no-install-recommends --fix-missing && \
     mkdir /openvas-src && \
     cd /openvas-src && \
-		wget -nv http://wald.intevation.org/frs/download.php/2125/openvas-libraries-8.0.4.tar.gz && \
-		wget -nv http://wald.intevation.org/frs/download.php/2129/openvas-scanner-5.0.4.tar.gz && \
-		wget -nv http://wald.intevation.org/frs/download.php/2169/openvas-manager-6.0.5.tar.gz && \
-		wget -nv http://wald.intevation.org/frs/download.php/2173/greenbone-security-assistant-6.0.5.tar.gz && \
-		wget -nv http://wald.intevation.org/frs/download.php/2141/openvas-cli-1.4.2.tar.gz && \
+		wget -nv http://wald.intevation.org/frs/download.php/2067/openvas-libraries-8.0.3.tar.gz && \
+		wget -nv http://wald.intevation.org/frs/download.php/2071/openvas-scanner-5.0.3.tar.gz && \
+		wget -nv http://wald.intevation.org/frs/download.php/2075/openvas-manager-6.0.3.tar.gz && \
+		wget -nv http://wald.intevation.org/frs/download.php/2079/greenbone-security-assistant-6.0.3.tar.gz && \
+		wget -nv http://wald.intevation.org/frs/download.php/1987/openvas-cli-1.4.0.tar.gz && \
 		wget -nv http://wald.intevation.org/frs/download.php/1975/openvas-smb-1.0.1.tar.gz && \
-		tar zxvf openvas-libraries-8.0.4.tar.gz && \
-		tar zxvf openvas-scanner-5.0.4.tar.gz && \
-		tar zxvf openvas-manager-6.0.5.tar.gz && \
-		tar zxvf greenbone-security-assistant-6.0.5.tar.gz && \
-		tar zxvf openvas-cli-1.4.2.tar.gz && \
+		tar zxvf openvas-libraries-8.0.3.tar.gz && \
+		tar zxvf openvas-scanner-5.0.3.tar.gz && \
+		tar zxvf openvas-manager-6.0.3.tar.gz && \
+		tar zxvf greenbone-security-assistant-6.0.3.tar.gz && \
+		tar zxvf openvas-cli-1.4.0.tar.gz && \
 		tar zxvf openvas-smb-1.0.1.tar.gz && \
     cd /openvas-src/openvas-smb-1.0.1 && \
         mkdir build && \
@@ -88,35 +88,35 @@ apt-get install build-essential \
         make -j $(nproc)&& \
         make install && \
 		make rebuild_cache && \
-    cd /openvas-src/openvas-libraries-8.0.4 && \
+    cd /openvas-src/openvas-libraries-8.0.3 && \
         mkdir build && \
         cd build && \
         cmake .. && \
         make -j $(nproc)&& \
         make install && \
 		make rebuild_cache && \
-	cd /openvas-src/openvas-scanner-5.0.4 && \
+	cd /openvas-src/openvas-scanner-5.0.3 && \
         mkdir build && \
         cd build && \
         cmake .. && \
         make -j $(nproc)&& \
         make install && \
 		make rebuild_cache && \
-	cd /openvas-src/openvas-manager-6.0.5 && \
+	cd /openvas-src/openvas-manager-6.0.3 && \
         mkdir build && \
         cd build && \
         cmake .. && \
         make -j $(nproc)&& \
         make install && \
 		make rebuild_cache && \
-	cd /openvas-src/greenbone-security-assistant-6.0.5 && \
+	cd /openvas-src/greenbone-security-assistant-6.0.3 && \
         mkdir build && \
         cd build && \
         cmake .. && \
         make -j $(nproc)&& \
         make install && \
 		make rebuild_cache && \
-	cd /openvas-src/openvas-cli-1.4.2 && \
+	cd /openvas-src/openvas-cli-1.4.0 && \
         mkdir build && \
         cd build && \
         cmake .. && \
@@ -126,9 +126,9 @@ apt-get install build-essential \
     rm -rf /openvas-src && \
 mkdir /redis && \
 	cd /redis && \
-	wget http://download.redis.io/releases/redis-3.0.3.tar.gz  && \
-		tar zxvf redis-3.0.3.tar.gz && \
-		cd redis-3.0.3 && \
+	wget http://download.redis.io/releases/redis-2.8.19.tar.gz  && \
+		tar zxvf redis-2.8.19.tar.gz && \
+		cd redis-2.8.19 && \
 		make -j $(nproc)&& \
 		make install && \
 		rm -fr /redis && \
@@ -146,10 +146,10 @@ mkdir /dirb && \
         make -j $(nproc)&& \
         make install && \
 cd /tmp && \
-    wget https://github.com/Arachni/arachni/releases/download/v1.2.1/arachni-1.2.1-0.5.7.1-linux-x86_64.tar.gz && \
-        tar -zxvf arachni-1.2.1-0.5.7.1-linux-x86_64.tar.gz && \
-		rm -f arachni-1.2.1-0.5.7.1-linux-x86_64.tar.gz && \
-        mv arachni-1.2.1-0.5.7.1 /opt/arachni && \
+    wget -nv http://downloads.arachni-scanner.com/arachni-1.1-0.5.7-linux-x86_64.tar.gz && \
+        tar -zxvf arachni-1.1-0.5.7-linux-x86_64.tar.gz && \
+		rm -f arachni-1.1-0.5.7-linux-x86_64.tar.gz && \
+        mv arachni-1.1-0.5.7 /opt/arachni && \
         ln -s /opt/arachni/bin/* /usr/local/bin/ && \
 cd ~ && \
     wget -nv https://github.com/sullo/nikto/archive/master.zip && \
@@ -176,7 +176,7 @@ apt-get clean -yq && \
     apt-get purge -y --auto-remove build-essential cmake && \
 cd / && \
 wget -nv https://svn.wald.intevation.org/svn/openvas/trunk/tools/openvas-check-setup --no-check-certificate
-
+	
 ADD ./redis.conf /etc/redis.conf
 ADD ./open-vas-8-start.sh /open-vas-8-start.sh
 ADD ./setup.sh /setup.sh
