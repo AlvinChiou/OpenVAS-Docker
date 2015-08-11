@@ -176,7 +176,7 @@ apt-get clean -yq && \
     apt-get purge -y --auto-remove build-essential cmake && \
 cd / && \
 wget -nv https://svn.wald.intevation.org/svn/openvas/trunk/tools/openvas-check-setup --no-check-certificate
-	
+
 ADD ./redis.conf /etc/redis.conf
 ADD ./open-vas-8-start.sh /open-vas-8-start.sh
 ADD ./setup.sh /setup.sh
